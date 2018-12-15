@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<script src="https://cdn.bootcss.com/jquery/2.2.2/jquery.js"></script>
+		<title>mvp设计模式</title>
+	</head>
+	<body>
+		<div>
+			<h1>MVP模式 m数据层 v视图层 p控制器 大多数操作都在控制器大量操作都在操作DOM</h1>
+			<input type="text" id="input" /> <button id="btn">提交</button>
+			<ul id="list"></ul>
+		</div>
+		<script>
+			function Page() {}
+			$.extend(Page.prototype, {
+				init: function() {
+					this.bindEvents();
+				},
+				bindEvents: function() {
+					var btn = $('#btn');
+					btn.on('click', $.proxy(this.handleBtnClick, this));
+				},
+				handleBtnClick: function() {
+					var value = $('#input').val();
+					var ulElem = $('#list');
+					ulElem.append(`<li>${value}</li>`);
+					$('#input').val('');
+				},
+			});
+
+			page = new Page().init();
+		</script>
+	</body>
+</html>

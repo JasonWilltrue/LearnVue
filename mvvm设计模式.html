@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<script src="https://cdn.bootcss.com/vue/2.5.12/vue.js"></script>
+		<title>mvvm设计模式</title>
+	</head>
+	<body>
+		<h1>重视m层 关注数据 不需要关注DOM操作</h1>
+		<div id="app">
+			<input type="text" v-model="inputValue" /> <button v-on:click="handleBtnClick">提交</button>
+			<ul>
+				<li v-for="item in list">{{ item }}</li>
+			</ul>
+		</div>
+		<script>
+			// MVVM
+			// M层
+			// v层
+			// vm层
+
+			var app = new Vue({
+				el: '#app',
+				data: {
+					list: [],
+					inputValue: '',
+				},
+				methods: {
+					handleBtnClick: function() {
+						this.list.push(this.inputValue);
+						this.inputValue = '';
+					},
+				},
+			});
+		</script>
+	</body>
+</html>
