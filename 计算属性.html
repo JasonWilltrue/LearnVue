@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<script src="https://cdn.bootcss.com/vue/2.5.12/vue.js"></script>
+		<title>mvvm设计模式</title>
+	</head>
+	<body>
+		<h1>计算属性带有缓存机制</h1>
+		<div id="app">{{ fullName }},{{ age }},{{ getFullName() }}</div>
+		<script>
+			var app = new Vue({
+				el: '#app',
+				data: {
+					firstName: 'jack',
+					lastName: 'lock',
+					age: '24',
+				},
+				//监听语法
+				watch: {
+					firstName: function() {
+						console.log('方法计算一次');
+						return this.firstName + ' ' + this.lastName;
+					},
+					lastName: function() {
+						console.log('方法计算一次');
+						return this.firstName + ' ' + this.lastName;
+					},
+				},
+				methods: {
+					getFullName: function() {
+						console.log('方法计算一次');
+						return this.firstName + ' ' + this.lastName;
+					},
+				},
+				computed: {
+					fullName: function() {
+						console.log('计算一次');
+						return this.firstName + ' ' + this.lastName;
+					},
+				},
+			});
+		</script>
+	</body>
+</html>

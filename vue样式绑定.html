@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<script src="https://cdn.bootcss.com/vue/2.5.12/vue.js"></script>
+		<title>mvvm设计模式</title>
+		<style>
+			.active {
+				color: red;
+				font-size: 42px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>计算属性带有缓存机制</h1>
+		<div id="app">
+			<span :class="{active:isActivated}" @click="handleDivClick">hello</span>
+
+			<!-- <span :class="[activated]" @click="handleDivClick">hello</span> -->
+			<div :style="[activated,{fontSize:'20px'}]">style 样式数组形象</div>
+		</div>
+
+		<script>
+			var app = new Vue({
+				el: '#app',
+				data: {
+					isActivated: false,
+					activated: '',
+				},
+				methods: {
+					handleDivClick: function() {
+						this.isActivated = !this.isActivated;
+						//  this.activated = (this.activated === "activated"?"":"activated");
+					},
+				},
+			});
+		</script>
+	</body>
+</html>
