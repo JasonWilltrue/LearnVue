@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<script src="https://cdn.bootcss.com/vue/2.5.12/vue.js"></script>
+		<title>forin循环对象</title>
+	</head>
+	<body>
+		<h1>增加对象方法set的使用 app.$set(app.listObj,"teach","english")</h1>
+		<h1>
+			增加数组set方法 app.$set(app.listObj,下标值1,修改值5) 如果set增加一个超过数组长度不不存在的值
+			app.$set(app.userInfo,999,"999"); 则在数组最后增加一位‘9999’ 数组长度则为 999+1
+		</h1>
+		<div id="app">
+			<template v-for="(item,key,index) of listObj">
+				<div>{{ item }}--{{ key }}--{{ index }}</div>
+			</template>
+			<template v-for="i in userInfo">
+				<div>{{ i }}</div>
+			</template>
+		</div>
+		<script>
+			var app = new Vue({
+				el: '#app',
+				data: {
+					listObj: {
+						name: 'jack',
+						age: 22,
+						sex: 'man',
+						love: 'footerball',
+					},
+					userInfo: ['a', 'b', 'c', 'd', ' e', 'f'],
+				},
+			});
+		</script>
+	</body>
+</html>
