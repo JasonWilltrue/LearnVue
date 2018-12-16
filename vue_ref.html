@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<script src="https://cdn.bootcss.com/vue/2.5.12/vue.js"></script>
+		<title>ref</title>
+	</head>
+	<body>
+		<div id="app">
+			<div ref="hello" @click="handleBtnClick">hello word</div>
+			<counter ref="add" @change="handleAddClick"></counter>
+			<!-- ref添加在组件中 -->
+		</div>
+
+		<script>
+			Vue.component('counter', {
+				template: '<div @click="handleClick">点击我加{{number}}</div>',
+				data: function() {
+					return { number: 0 };
+				},
+				methods: {
+					handleClick: function() {
+						this.number++;
+						this.$emit('change');
+					},
+				},
+			});
+			var app = new Vue({
+				el: '#app',
+				methods: {
+					handleBtnClick: function() {
+						console.log(this.$refs.hello); //<div>hello word</div>   如果是组件就是组件的引用
+					},
+					handleAddClick: function() {
+						console.log(this.$refs.add); //VueComponent {_uid: 1, _isVue: true, $options: {…}, _renderProxy: Proxy, _self: VueComponent, …}
+						alert(this.$refs.add.number);
+					},
+				},
+			});
+		</script>
+	</body>
+</html>
