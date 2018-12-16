@@ -8,19 +8,25 @@
 		<title>mvvm设计模式</title>
 	</head>
 	<body>
-		<h1>重视m层 关注数据 不需要关注DOM操作</h1>
 		<div id="app">
-			<input type="text" v-model="inputValue" /> <button v-on:click="handleBtnClick">提交</button>
-			<ul>
-				<li v-for="item in list">{{ item }}</li>
-			</ul>
+			<div v-if="show">{{ message }}</div>
+			<div v-else>哈哈</div>
+			<p>===========================</p>
+			<div v-if="show1 == 'a'">A</div>
+			<div v-else-if="show1 == 'b'">B</div>
+			<div v-else>other</div>
+			<p>===========================</p>
+			<h1>给input的框加上key值 vue的diff算法就会去计算不同key，也不会复用input框</h1>
+			<div v-if="show">user： <input type="text" key="name" /></div>
+			<div v-else>password： <input type="text" key="password" /></div>
 		</div>
 		<script>
 			var app = new Vue({
 				el: '#app',
 				data: {
-					list: [],
-					inputValue: '',
+					show1: 'a',
+					show: false,
+					message: '😁',
 				},
 				methods: {
 					handleBtnClick: function() {
