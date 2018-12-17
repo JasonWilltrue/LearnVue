@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<script src="https://cdn.bootcss.com/vue/2.5.12/vue.js"></script>
+		<title>属性校验</title>
+	</head>
+	<body>
+		<div id="app">
+			<child @click="handleChildClick"></child>
+			<div>======================</div>
+			<child @click.native="handleNatvieClick"></child>
+		</div>
+		<script>
+			Vue.component('child', {
+				template: '<div @click="handleChildClick">123</div>',
+				methods: {
+					handleChildClick: function() {
+						let a = '子组件的传出来数据';
+						this.$emit('click', a);
+					},
+				},
+			});
+			var app = new Vue({
+				el: '#app',
+				methods: {
+					handleChildClick: function(a) {
+						alert(a); //父组件这样对这个事件是触发不了的   可以吧子组件a的值传出来
+					},
+					handleNatvieClick: function() {
+						alert('触发原生点击事件'); //直接触发原生事件  带上 不能从子组件传值出来
+					},
+				},
+			});
+		</script>
+	</body>
+</html>
