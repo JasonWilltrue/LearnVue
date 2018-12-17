@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<script src="https://cdn.bootcss.com/vue/2.5.12/vue.js"></script>
+		<title>属性校验</title>
+	</head>
+	<body>
+		<div id="app"><child content="hell"></child></div>
+		<script>
+			Vue.component('child', {
+				props: {
+					// content:[Number,String]
+					content: {
+						type: String,
+						// require: true,   //必须填写
+						// default: 'default value',  //默认值
+						// 筛选条件
+						validator: function(value) {
+							return value.length > 5;
+						},
+					},
+				},
+				template: '<div>{{content}}</div>',
+			});
+			var app = new Vue({
+				el: '#app',
+			});
+		</script>
+	</body>
+</html>
